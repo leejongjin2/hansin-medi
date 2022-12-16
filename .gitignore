@@ -1,0 +1,5 @@
+**/**.pth
+*cache*
+*venv*
+*.zip
+.DS_Store
