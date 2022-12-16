@@ -153,14 +153,17 @@ test
             console.log("Recieve From Server => " + message.data + "\n");
             alert("Recieve From Server => " + message.data + "\n");
 
-            window.print();
+            //window.print();
             addEventListener("afterprint", (event) => {});
             onafterprint = (event) => {};
             window.onafterprint = (event) => {
+              console.log(event)
                 window.open("", "_self", ""); //window.browser가 자식 브라우저만 닫을 수있어서 편법으로 자기를 열고 자기를 닫도록함.
 
                 window.close();
+
             };
+            window.print()
         };
     </script>
 </html>
