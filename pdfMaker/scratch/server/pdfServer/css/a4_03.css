@@ -19,13 +19,13 @@
     align-items: center;
 }
 
-#header_title {
+#headerTitle {
     font-weight: bold;
     font-size: xxx-large;
     /* margin: 30px 0px 10px 0px; */
 }
 
-#user_info_space {
+#userInfoSpace {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -35,14 +35,14 @@
     margin-bottom: 3%;
 }
 
-.user_info_item {
+.userInfoItem {
     color: black;
     display: flex;
     /* vertical-align: middle; */
     align-items: center;
 }
 
-.user_info_item .value::before {
+.userInfoItem .value::before {
     content: "|";
     padding: 0px 30px 0px 0px;
 }
@@ -56,12 +56,12 @@
     font-size: small;
 }
 
-#main_space {
+#mainSpace {
     padding-inline: 5%;
     padding-block: 3%;
 }
 
-#main_title {
+#mainTitle {
     background-color: #909090;
     color: #fff;
     display: table;
@@ -72,7 +72,7 @@
     margin: 5% 1% 1% 1%;
 }
 
-.mini_title {
+.miniTitle {
     padding: 0% 2% 0% 2%;
     font-weight: bolder;
     font-size: large;

@@ -16,6 +16,6 @@ async def accept(websocket, path):
 start_server = websockets.serve(accept, "localhost", 8899)
 # 비동기로 서버를 대기한다.
 asyncio.get_event_loop().run_until_complete(start_server)
-url = "src/communication/pdfServer/one.html"
+url = "hansin-medi/pdfMaker/scratch/server/pdfServer/one.html"
 webbrowser.open(url)
 asyncio.get_event_loop().run_forever()
