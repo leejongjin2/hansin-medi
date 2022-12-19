@@ -1,0 +1,35 @@
+#mainSpace {
+    padding-inline: 5%;
+    padding-block: 3%;
+}
+
+#mainTitle {
+    background-color: #909090;
+    color: #fff;
+    display: table;
+    padding: 0% 2%;
+    border-radius: 80px 80px;
+    font-weight: bolder;
+    font-size: large;
+    margin: 5% 1% 1% 1%;
+}
+
+.miniTitle {
+    padding: 0% 2% 0% 2%;
+    font-weight: bolder;
+    font-size: large;
+    margin: 3%;
+}
+
+.content {
+    margin-left: 5%;
+    color: #909090;
+    line-height: 2em;
+    font-size: small;
+}
+
+#mainDesc {
+    color: #919191;
+    font-size: x-small;
+    margin-bottom: 2%;
+}

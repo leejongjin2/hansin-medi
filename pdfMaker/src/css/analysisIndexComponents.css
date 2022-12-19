@@ -1,0 +1,67 @@
+hr {
+    border-width: 1px;
+    width: 100%;
+}
+
+#warning {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 5%;
+}
+
+#percent {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#percentValue {
+    font-size: 3.6em;
+    font-weight: bold;
+    color: crimson;
+    margin: 0 auto;
+    text-align: center;
+    vertical-align: bottom;
+}
+#percentInfo {
+    text-align: center;
+    background-color: #b7b2b2;
+    border-radius: 80px 80px;
+    color: #fff;
+    font-size: 0.8em;
+}
+
+#warningImg {
+    width: 6cm;
+    float: right;
+}
+
+#warningInfo {
+    text-align: center;
+    color: #909090;
+    margin: 0 auto;
+    font-size: 0.7em;
+}
+
+.indexName {
+    float: left;
+    width: 30%;
+    height: 100%;
+    font-size: 0.9em;
+    padding-left: 3%;
+    padding-bottom: 1%;
+}
+
+/* .indexGraph canvas {
+    width: 11cm;
+    height: 1.25cm;
+} */
+
+#habitGuidance {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: #b7b2b2;
+    border-radius: 10px 10px;
+    color: "black";
+    padding: 2%;
+    font-size: 0.9em;
+}

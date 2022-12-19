@@ -1,0 +1,167 @@
+.coverBase {
+    background-color: #1ac5cc;
+    clear: both;
+    margin: 0;
+    padding: 5% 0% 0% 0%;
+    display: flex;
+    flex-direction: column;
+}
+
+.base {
+    background-color: #1ac5cc;
+    clear: both;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.inner {
+    position: relative;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-inline: 10%;
+}
+
+header .base {
+    margin-top: 6%;
+    margin-bottom: 5%;
+}
+
+#headline {
+    display: table;
+    background: #fff;
+    color: #1ac5cc;
+    display: table;
+    padding-inline: 1%;
+    font-weight: bolder;
+    font-size: large;
+}
+
+footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+#footline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#footline .desc {
+    float: left;
+    font-size: 0.8em;
+    color: #fff;
+    width: 88%;
+}
+
+#footline #logo {
+    float: left;
+    height: 20px;
+}
+
+#footline #logoDesc {
+    float: left;
+    font-size: 0.3em;
+    color: #fff;
+    line-height: 2em;
+    /* margin: 4px auto; */
+}
+
+.disableClick {
+    pointer-events: none;
+}
+
+.graphWrapper {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    align-self: center;
+}
+
+.graph {
+    float: left;
+}
+
+#coverHeadSpace {
+    color: #fff;
+    margin-top: 6%;
+    margin-bottom: 3%;
+    font-size: small;
+}
+
+#coverHeadLogo {
+    display: flex;
+    align-items: center;
+}
+
+#coverHeadLogo a img {
+    height: 20px;
+}
+
+#coverHeadLogo p {
+    padding: 0 0 3px 0;
+    font-weight: bold;
+}
+
+#coverHeadTitle {
+    font-weight: bold;
+    font-size: xxx-large;
+}
+
+#userInfoSpace {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: white;
+    border-radius: 80px 80px;
+    padding: 1% 5%;
+    margin-bottom: 3%;
+}
+
+.userInfoItem {
+    color: black;
+    display: flex;
+    /* vertical-align: middle; */
+    align-items: center;
+}
+
+.userInfoItem .userValue::before {
+    content: "|";
+    padding: 0px 30px 0px 0px;
+}
+.userIndex {
+    width: 30%;
+    font-size: small;
+}
+
+.userValue {
+    width: 70%;
+    font-size: small;
+}
+
+.analysisBlock {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8%;
+}
+
+.indexBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.graphWrapper {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    align-self: center;
+}
