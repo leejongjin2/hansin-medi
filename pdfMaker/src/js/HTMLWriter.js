@@ -1,18 +1,41 @@
-cancers = ["간암", "위암"];
-
-var percent = 50;
+var percent = 80;
 function get_percent() {
     return percent;
 }
 
-function writeHTMLs() {
-    //get cancerList
-    for (const cancer of cancers) {
-        writeHtml(cancer);
+function logo_info() {
+    if (percent >= 1 && percent <= 20) {
+        return "img/정상.jpg";
+    } else if (percent > 20 && percent <= 40) {
+        return "img/관심.jpg";
+    } else if (percent > 40 && percent <= 60) {
+        return "img/주의.jpg";
+    } else if (percent > 60 && percent <= 80) {
+        return "img/경계.jpg";
+    } else if (percent > 80 && percent <= 99) {
+        return "img/위험.jpg";
+    } else {
+        console.error("Invalid percent");
     }
 }
 
-function writeHtml(cancer) {
+function writeHTMLs() {
+    //get cancerList
+    const allCancerIndexes = getIndexPerCancers();
+    for (const cancer of Object.keys(allCancerIndexes)) {
+        writeHtml(cancer, allCancerIndexes[cancer]);
+    }
+}
+
+function getIndexPerCancers() {
+    const indexes = JSON.parse(JSON.stringify(AnalysisIndex));
+    if (indexes == null) {
+        console.error("No Index data");
+    }
+    return indexes;
+}
+
+function writeHtml(cancer, indexes) {
     document.write("<body>");
     document.write('<div class="page">');
     document.write("<header>");
@@ -52,57 +75,10 @@ function writeHtml(cancer) {
     document.write("<h2>분석 지표</h2>");
     document.write("        ");
     document.write('<div class="indexBlock">');
-    document.write(writeHTMLGraphs(cancer));
-    // document.write("<!-- 1번 그래프 -->");
-    // document.write('<div class="graph_wrapper">');
-    // document.write('<div class="graph_name">- 저밀도지단백콜레스테롤</div>');
-    // document.write('<div class="indexGraph">');
-    // document.write('<canvas id="index01"></canvas>');
-    // document.write("</div>");
-    // document.write("</div>");
-    // document.write("        ");
-    // document.write("<!-- 2번 그래프 -->");
-    // document.write('<div class="graph_wrapper">');
-    // document.write('<div class="graph_name">- 총콜레스테롤</div>');
-    // document.write('<div class="indexGraph">');
-    // document.write('<canvas id="index02"></canvas>');
-    // document.write("</div>");
-    // document.write("</div>");
-    // document.write("        ");
-    // document.write("<!-- 3번 그래프 -->");
-    // document.write('<div class="graph_wrapper">');
-    // document.write('<div class="graph_name">- 비만도</div>');
-    // document.write('<div class="indexGraph">');
-    // document.write('<canvas id="canvas11"></canvas>');
-    // document.write("</div>");
-    // document.write("</div>");
-    // document.write("        ");
-    // document.write("<!-- 4번 그래프 -->");
-    // document.write('<div class="graph_wrapper">');
-    // document.write('<div class="graph_name">- 고밀도지단백콜레스테롤</div>');
-    // document.write('<div class="indexGraph">');
-    // document.write('<canvas id="canvas11"></canvas>');
-    // document.write("</div>");
-    // document.write("</div>");
-    // document.write("        ");
-    // document.write("<!-- 5번 그래프 -->");
-    // document.write('<div class="graph_wrapper">');
-    // document.write('<div class="graph_name">- 알카라인 포스타파제</div>');
-    // document.write('<div class="indexGraph">');
-    // document.write('<canvas id="canvas11"></canvas>');
-    // document.write("</div>");
-    // document.write("</div>");
-    // document.write("        ");
-    // document.write("<!-- 6번 그래프 -->");
-    // document.write('<div class="graph_wrapper">');
-    // document.write('<div class="graph_name">- 중성지방</div>');
-    // document.write('<div class="indexGraph">');
-    // document.write('<canvas id="canvas11"></canvas>');
-    // document.write("</div>");
-    // document.write("</div>");
+    writeHTMLGraphs(cancer, indexes);
     document.write("</div>");
-    // document.write(getCanvas());
-    document.write(drawIndexGraph());
+    const graphDrawer = new GraphDrawer(cancer, indexes);
+    graphDrawer.drawGraphs();
     document.write("        ");
     document.write("<h2>위험도를 낮추기 위한 생활습관 가이드</h2>");
     document.write('<div class="indexBlock">');
@@ -148,41 +124,18 @@ function writeHtml(cancer) {
     document.write("</html>");
 }
 
-function writeHTMLGraphs(cancer) {
-    const idxes = getAnalysisIndexes(cancer);
-    for (const [index, element] of idxes.entries()) {
+function writeHTMLGraphs(cancer, indexes) {
+    for (const [idx, key] of Object.keys(indexes).entries()) {
         document.write('<div class="graphWrapper">');
-        document.write('<div class="indexName">- ' + element + "</div>");
+        document.write(
+            `<div class="indexName">- ${key.replace(/\s/g, "")}</div>`
+        );
         document.write('<div class="indexGraph">');
         document.write(
-            '<canvas id="' +
-                cancer +
-                index +
-                '" style="width: 11cm; height:1.25cm;""></canvas>'
-            // '" width= "11cm" height = "1.25cm" ></canvas>'
+            `<canvas id="${cancer}${idx}" style="width: 11cm; height:1.25cm;""></canvas>`
         );
         document.write("</div>");
         document.write("<div>" + 55.0 + "</div>");
         document.write("</div>");
-    }
-}
-
-function getAnalysisIndexes(cancer) {
-    return ["저밀도지단백콜레스테롤", "총콜레스테롤", "비만도"];
-}
-
-function logo_info() {
-    if (percent >= 1 && percent <= 20) {
-        return "img/정상.jpg";
-    } else if (percent > 20 && percent <= 40) {
-        return "img/관심.jpg";
-    } else if (percent > 40 && percent <= 60) {
-        return "img/주의.jpg";
-    } else if (percent > 60 && percent <= 80) {
-        return "img/경계.jpg";
-    } else if (percent > 80 && percent <= 99) {
-        return "img/위험.jpg";
-    } else {
-        console.error("Invalid percent");
     }
 }

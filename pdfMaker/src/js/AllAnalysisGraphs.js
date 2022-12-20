@@ -114,15 +114,6 @@ const config = {
     },
 };
 
-// window.onload = function () {
-//     drawCanvas();
-//     // const ctx01 = document.getElementById("graph01");
-//     // new Chart(ctx01, config);
-
-//     // const ctx02 = document.getElementById("graph02");
-//     // window.mybar01 = new Chart(ctx02, config);
-// };
-
 function drawCanvas() {
     const ctx01 = document.getElementById("allCancers");
     new Chart(ctx01, config);
