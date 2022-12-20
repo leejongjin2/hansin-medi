@@ -1,4 +1,4 @@
-var percent = 80;
+var percent = 30;
 function get_percent() {
     return percent;
 }

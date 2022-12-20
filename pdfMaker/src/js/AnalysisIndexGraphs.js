@@ -18,9 +18,9 @@ class MyGraph {
         throw new Error("Method 'drawGraph()' must be implemented.");
     }
 
-    setSection() {
-        throw new Error("Method 'setSection()' must be implemented.");
-    }
+    // setSection() {
+    //     throw new Error("Method 'setSection()' must be implemented.");
+    // }
 }
 
 /**
@@ -176,9 +176,6 @@ class ThreeSectionGraph extends MyGraph {
 }
 
 class GraphDrawer {
-    twoSecGraph = new TwoSectionGraph();
-    threeSecGraph = new ThreeSectionGraph();
-
     constructor(cancer, indexes) {
         this.cancer = cancer;
         this.indexes = indexes;
