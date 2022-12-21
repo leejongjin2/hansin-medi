@@ -2,6 +2,7 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5.QtCore import QUrl
+from PdfServer import start_server
 # from PyQt5.QtWebEngineWidgets import *
 # from PyQt5 import *
 # from PyQt5 import QtWebEngineWidgets
@@ -23,18 +24,16 @@ class WindowClass(QMainWindow, form_class) :
     
     
     def inference(self):
-        # get txt datas
-        print(self.get_userInfo())
+        print('get user info',self.get_userInfo())
+        print('inference..')
+        if (self.startAxcare()):
+            self.webView.load(QUrl.fromLocalFile('/home/hwi/github/hansin-medi/pdfMaker/src/result.html'))    
+        
     
     def print(self):
         # call pdf
         print('pressed print button')
-        # self.scrl_html.setSource(QUrl(""))
-        # self.textbrowser.setex
-                
-        self.webView.load(QUrl.fromLocalFile('/home/hwi/github/hansin-medi/pdfMaker/src/result.html'))
-        # self.webView.show()
-
+        start_server()
         
     def get_userInfo(self):
         name = self.intxt_name.toPlainText()
@@ -42,6 +41,9 @@ class WindowClass(QMainWindow, form_class) :
         examDate = self.intxt_examDate.toPlainText()
         
         return name, birth, examDate
+
+    def startAxcare(self):
+        return True
 
 if __name__ == "__main__" :
     #QApplication : 프로그램을 실행시켜주는 클래스

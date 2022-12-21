@@ -5,109 +5,6 @@
         <title>OK AI CHECK</title>
         <link rel="stylesheet" href="css/a4size.css" />
         <link rel="stylesheet" href="css/layout.css" />
-        <link rel="stylesheet" href="css/analysisIndexComponents.css" />
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <!-- 그래프 생성용 scripts and styles -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-        <script src="https://cdn.rawgit.com/chartjs/Chart.LinearGauge.js/master/Chart.LinearGauge.js"></script>
-        <a class="disableClick" href="src/">
-            <script src="js/AnalysisIndexGraphs.js"></script>
-            <script src="js/DataHandler.js"></script>
-            <script src="js/HTMLWriter.js"></script>
-        </a>
-    </head>
-    <script src="json/AnalysisIndex.json" type="text/javascript"></script>
-    <script>
-        writeHTMLs();
-    </script>
-</html>
-
-<!DOCTYPE html>
-<html lang="kr">
-    <head>
-        <meta charset="UTF-8" />
-        <title>OK AI CHECK</title>
-        <link rel="stylesheet" href="css/allAnalysisComponents.css" />
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <a class="disableClick" href="src/">
-            <script src="js/AllAnalysisGraphs.js"></script>
-        </a>
-    </head>
-    <body>
-        <!-- <div class="book"> -->
-        <div class="page">
-            <header>
-                <div class="base">
-                    <div class="inner">
-                        <div id="headline">OK AI CHECK</div>
-                    </div>
-                </div>
-            </header>
-            <main>
-                <div class="inner">
-                    <div id="analysisTitle">
-                        <h1>분석내용 종합</h1>
-                        OK AI CHECK의 위험도는 향후 5년 이내에 해당 질병의 발병
-                        가능성을 의미합니다.
-                    </div>
-
-                    <h2>암 위험도 분석</h2>
-                    <section class="analysisBlock">
-                        <!-- 1번 그래프 -->
-                        <div class="graphWrapper">
-                            <div class="analysisGraph">
-                                <canvas id="allCancers"></canvas>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="analysisBlock">
-                        <h2>만성 질환 위험도 분석</h2>
-                        <!-- 2번 그래프 -->
-                        <div class="graphWrapper">
-                            <div class="analysisGraph">
-                                <canvas id="allChronics"></canvas>
-                            </div>
-                        </div>
-                    </section>
-
-                    <script>
-                        drawCanvas();
-                    </script>
-                </div>
-            </main>
-
-            <footer>
-                <div class="base">
-                    <div class="inner">
-                        <div id="footline">
-                            <p class="desc">
-                                서울대 공식 자회사 SNUAiLab과 INFINITYCARE 공동
-                                연구 개발&nbsp
-                            </p>
-
-                            <a class="disableClick" href="src/">
-                                <img id="logo" src="img/infinity_logo.png" />
-                            </a>
-
-                            <div id="logoDesc">
-                                인피니티케어<br />R&D 연구센터
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </body>
-</html>
-
-<!DOCTYPE html>
-<html lang="kr">
-    <head>
-        <meta charset="UTF-8" />
-        <title>OK AI CHECK</title>
-        <link rel="stylesheet" href="css/a4size.css" />
-        <link rel="stylesheet" href="css/layout.css" />
         <link rel="stylesheet" href="css/coverComponents.css" />
         <a class="disableClick" href="src/">
             <script src="js/DataHandler.js"></script>
@@ -225,7 +122,110 @@
             </footer>
         </div>
     </body>
-    <!-- <script type="text/javascript">
+</html>
+
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>OK AI CHECK</title>
+        <link rel="stylesheet" href="css/allAnalysisComponents.css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <a class="disableClick" href="src/">
+            <script src="js/AllAnalysisGraphs.js"></script>
+        </a>
+    </head>
+    <body>
+        <!-- <div class="book"> -->
+        <div class="page">
+            <header>
+                <div class="base">
+                    <div class="inner">
+                        <div id="headline">OK AI CHECK</div>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="inner">
+                    <div id="analysisTitle">
+                        <h1>분석내용 종합</h1>
+                        OK AI CHECK의 위험도는 향후 5년 이내에 해당 질병의 발병
+                        가능성을 의미합니다.
+                    </div>
+
+                    <h2>암 위험도 분석</h2>
+                    <section class="analysisBlock">
+                        <!-- 1번 그래프 -->
+                        <div class="graphWrapper">
+                            <div class="analysisGraph">
+                                <canvas id="allCancers"></canvas>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="analysisBlock">
+                        <h2>만성 질환 위험도 분석</h2>
+                        <!-- 2번 그래프 -->
+                        <div class="graphWrapper">
+                            <div class="analysisGraph">
+                                <canvas id="allChronics"></canvas>
+                            </div>
+                        </div>
+                    </section>
+
+                    <script>
+                        drawCanvas();
+                    </script>
+                </div>
+            </main>
+
+            <footer>
+                <div class="base">
+                    <div class="inner">
+                        <div id="footline">
+                            <p class="desc">
+                                서울대 공식 자회사 SNUAiLab과 INFINITYCARE 공동
+                                연구 개발&nbsp
+                            </p>
+
+                            <a class="disableClick" href="src/">
+                                <img id="logo" src="img/infinity_logo.png" />
+                            </a>
+
+                            <div id="logoDesc">
+                                인피니티케어<br />R&D 연구센터
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
+
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta charset="UTF-8" />
+        <title>OK AI CHECK</title>
+        <link rel="stylesheet" href="css/a4size.css" />
+        <link rel="stylesheet" href="css/layout.css" />
+        <link rel="stylesheet" href="css/analysisIndexComponents.css" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <!-- 그래프 생성용 scripts and styles -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+        <script src="https://cdn.rawgit.com/chartjs/Chart.LinearGauge.js/master/Chart.LinearGauge.js"></script>
+        <a class="disableClick" href="src/">
+            <script src="js/AnalysisIndexGraphs.js"></script>
+            <script src="js/DataHandler.js"></script>
+            <script src="js/HTMLWriter.js"></script>
+        </a>
+    </head>
+    <script src="json/AnalysisIndex.json" type="text/javascript"></script>
+    <script>
+        writeHTMLs();
+    </script>
+    <script type="text/javascript">
         // 웹 서버를 접속한다.
         var webSocket = new WebSocket("ws://localhost:8899");
         // 소켓 접속이 되면 호출되는 함수
@@ -252,9 +252,10 @@
                 console.log(event);
                 window.open("", "_self", ""); //window.browser가 자식 브라우저만 닫을 수있어서 편법으로 자기를 열고 자기를 닫도록함.
 
+                webSocket.close();
                 window.close();
             };
             window.print();
         };
-    </script> -->
+    </script>
 </html>
