@@ -30,7 +30,7 @@ hr {
     font-size: 0.8em;
 }
 
-#warningImg {
+.warningImg {
     width: 6cm;
     float: right;
 }

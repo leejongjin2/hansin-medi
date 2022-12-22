@@ -59,8 +59,10 @@ function writeHtml(cancer, indexes) {
     document.write("</div>");
     document.write("</div>");
     document.write('<a class="disableClick" href="src/">');
-    document.write('<img id="warningImg" src="" />');
-    document.getElementById("warningImg").src = logo_info();
+    document.write(
+        `<img class="warningImg" id="${cancer}warningImg" src="" />`
+    );
+    document.getElementById(cancer + "warningImg").src = logo_info();
     document.write("</a>");
     document.write("</div>");
     document.write("<hr />");
