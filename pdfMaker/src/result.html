@@ -251,10 +251,13 @@
             window.onafterprint = (event) => {
                 console.log(event);
                 window.open("", "_self", ""); //window.browser가 자식 브라우저만 닫을 수있어서 편법으로 자기를 열고 자기를 닫도록함.
-
+                console.log("닫는다...");
+                webSocket.send("close");
                 webSocket.close();
+                console.log("닫았다...");
                 window.close();
             };
+
             window.print();
         };
     </script>

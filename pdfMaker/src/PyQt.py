@@ -21,7 +21,7 @@ class WindowClass(QMainWindow, form_class) :
         # button
         self.btn_inference.clicked.connect(self.inference)
         self.btn_print.clicked.connect(self.print)
-    
+
     
     def inference(self):
         print('get user info',self.get_userInfo())
@@ -32,6 +32,7 @@ class WindowClass(QMainWindow, form_class) :
     
     def print(self):
         # call pdf
+        
         print('pressed print button')
         start_server()
         
