@@ -227,7 +227,7 @@
     </script>
     <script type="text/javascript">
         // 웹 서버를 접속한다.
-        var webSocket = new WebSocket("ws://localhost:8899");
+        var webSocket = new WebSocket("ws://localhost:8888");
         // 소켓 접속이 되면 호출되는 함수
         webSocket.onopen = function (message) {
             console.log("Server connect...");
@@ -235,11 +235,11 @@
         };
         // 소켓 접속이 끝나면 호출되는 함수
         webSocket.onclose = function (message) {
-            console.log("Server disconnect...");
+            alert("Server disconnect...");
         };
         // 소켓 통신 중에 에러가 발생되면 호출되는 함수
         webSocket.onerror = function (message) {
-            console.error("error...\n");
+            alert("Websocket error...\n");
         };
         // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
         webSocket.onmessage = function (message) {
