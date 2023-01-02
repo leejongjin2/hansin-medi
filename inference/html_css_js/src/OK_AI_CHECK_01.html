@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OK AI CHECK</title>
+    <link rel="stylesheet" href="css/Page.css">
+    <link rel="stylesheet" href="css/chart.css">
+    <style>
+        .pdfobject-container { height: 30rem; border: 1rem solid rgba(0,0,0,.1); }
+    </style>
+</head>
+<body>
+    <div id="example1">
+        <header class="header">
+            <h1 style="font-weight: bold; margin-left: 20px;">OK AI CHECK</h1>
+        </header>
+            <div id="main">
+                <div id="content">
+                    <!-- Header Text 2022-11-27 -->
+                    <section>
+                        <div class="container">
+                            <h1>간암위험도 분석</h1>
+                        </div>
+                    </section>
+                    <!-- Contents Text 2022-11-27 -->
+                    <section class="color">
+                        <div class="container">
+                            <h1>분석 결과</h1>
+                            <hr>
+                            <p style="font-size: 42px; font-weight: bold; color: crimson;">62.8%</p><p>AI예측,  5년 내 발병 위험도</p>
+
+                            <p>* 발병 위험도는 1%~99% 의 구간을 가지며 발병율이 높을 수록 위험도가 높다는 의미입니다. <br>
+                                정상 1~20%, 관심 21~40%, 주의 41~60%, 경계 61~80%, 위험 81~99% 로 구분됩니다</p>
+                        </div>
+                    </section>
+                    <!-- Footer Text 2022-11-27 -->
+                    <section>
+                        <div class="container">
+                            <h1>분석 지표</h1>
+                            <p style="display: flex;">tw</p>
+                            <div class="chart"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>         
+    </div>
+    <script src="https://d3js.org/d3.v3.min.js"  charset="utf-8"></script>
+    <script src="js/chart-01.js"></script>
+    <!-- PDF Script -->
+    <script src="/js/pdfobject.js"></script>
+    <script>PDFObject.embed("/pdf/sample-3pp.pdf", "#example1");</script>
+
+</body>
+</html>

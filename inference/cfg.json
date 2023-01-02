@@ -1,0 +1,91 @@
+{
+    "db":{
+        "rename":
+        {
+
+        }
+    },
+
+    "preprocess":{
+        "use_cols": {
+            "_comment":"change cols사용시 new col명 사용",
+            "rename_cols":{
+                "origin": ["lar int_ca19", "lar int_cea",
+                           "TP01", "TP02", "GP01", "GP02", "TP00", "TP07", "TP08", "C037", "C039", "C904",
+                           "C038", "C026", "C027", "C029", "C030", "C054", "C022", "C023", "C024", "C018", 
+                           "U008", "C032", "E001", "I521", "I105", "I022", "I348", "I502", "I503", "I349"],
+                "new": ["lar_int_ca19", "lar_int_cea",
+                        "height", "weight", "wai_cir", "bmi", "obesity", "blood_press_high", "blood_press_low", "total_col", "hdl_col", "ldl_col_cal", 
+                        "tri_gly", "r_gtp", "liver_bilirubin", "liver_protein", "liver_albumin", "liver_globulin", "liver_ast", "liver_alt", "liver_alp", "glucose", 
+                        "urine_protein", "creatinine", "liver_b_antigen", "stomach_helico_bacter", "lung_cyfra21_1", "lar_int_cea", "lar_int_ca19", "thy_tsh", "thy_t4", "breast_ca15_3"]
+            },
+            "base":
+                ["per1_age", "per1_gender", "per1_life_code1", "per1_life_code2","per1_life_code3", 
+                "per1_life_code4", "per1_life_code5", "per1_ilban", "per1_kwa1", "per1_kwa2",  
+                "per1_kwa3", "per1_kwa4", "per1_kwa5", "per1_kwa6", "per1_spc_year",
+                "mj1_1_1", "mj1_1_2", "mj1_2_1", "mj1_2_2", "mj1_3_1",
+                "mj1_3_2", "mj1_4_1", "mj1_4_2", "mj1_5_1", "mj1_5_2",
+                "mj1_6_1", "mj1_6_2", "mj1_7_1", "mj1_7_2", "mj2_1",
+                "mj2_2", "mj2_3", "mj2_4",  "mj2_5", "mj3", 
+                "mj4", "mj5", "mj6", "mj70", "mj74", 
+                "mj8_1", "mj8_2_1", "mj8_2_2", "mj9_1", "mj9_2_1",
+                "mj9_2_2", "mj10", "height", "weight", "wai_cir",
+                "bmi", "obesity", "blood_press_high", "blood_press_low", "total_col",
+                "hdl_col", "ldl_col_cal", "tri_gly", "r_gtp", "liver_bilirubin",
+                "liver_protein", "liver_albumin", "liver_globulin", "liver_ast", "liver_alt",
+                "liver_alp", "glucose", "urine_protein", "creatinine"],
+            
+            "1": ["liver_b_antigen", "lar_int_ca19", "lar_int_cea", "liver_ast_per", "liver_alt_per", "liver_alp_per", "r_gtp_per", "hdl_col_per"],
+            "2": ["liver_b_antigen", "lar_int_ca19", "lar_int_cea", "stomach_helico_bacter", "cea_per", "ca19_per", "hdl_col_per", "tri_gly_per", "glucose_per"],
+            "3": ["liver_b_antigen", "lar_int_ca19", "lar_int_cea", "lung_cyfra21_1", "thy_tsh", "cyfra21_1_per", "cea_per", "liver_ast_per", "liver_alp_per", "glucose_per", "ca19_per"],
+            "4": ["liver_b_antigen", "lar_int_ca19", "lar_int_cea", "cea_per", "ca19_per", "glucose_per", "tri_gly_per", "bmi_per", "r_gtp_per"],
+            "5": ["liver_b_antigen", "lar_int_ca19", "lar_int_cea", "thy_ft4", "thy_tsh", "ft4_per", "tsh_per", "tri_gly_per", "bmi_per", "ldl_per", "liver_alp_per"],
+            "6": ["liver_b_antigen", "lar_int_ca19", "lar_int_cea", "breast_ca15_3", "ca15_3_per", "ldl_per", "total_col_per", "bmi_per", "hdl_col_per"],
+            "7": ["blood_press_high_per","blood_press_low_per","ldl_per","total_col_per"],
+            "8": ["total_col_per","ldl_per","bmi_per","blood_press_high_per","blood_press_low_per","glucose_per"],
+            "9": ["glucose_per","tri_gly_per","r_gtp_per","total_col_per","ldl_per"],
+            "10": ["total_col_per","albumin_per","ldl_per","hdl_col_per","tri_gly_per"],
+            "11": ["blood_press_low_per","blood_press_high_per","bmi_per","glucose_per","tri_gly_per"],
+            "12": ["total_col_per","tri_gly_per","ldl_per","hdl_col_per"],
+            "13": ["liver_ast_per","liver_alt_per","r_gtp_per","liver_alp_per","tri_gly_per","bmi_per"],
+            "14": ["urine_protein_per","albumin_per","creatinine_per","liver_protein_per"]
+        },
+
+        "target":{
+            "1": "percent_01",
+            "2": "percent_02",
+            "3": "percent_03",
+            "4": "percent_04",
+            "5": "percent_05",
+            "6": "percent_06",
+            "7": "percent_07",
+            "8": "percent_08",
+            "9": "percent_09",
+            "10": "percent_10",
+            "11": "percent_11",
+            "12": "percent_12",
+            "13": "percent_13",
+            "14": "percent_14"
+        }
+    },
+
+    "output":{
+        "private": ["per1_date", "per1_bun_no", "per1_name", "per1_birth_date",  "per1_age", "per1_gender"],
+        "cols":{
+            "1": ["liver_ast", "liver_alt", "liver_alp", "r_gtp", "hdl_col", "bmi"],
+            "2": ["lar_int_cea", "lar_int_ca19", "hdl_col", "tri_gly", "glucose", "ldl_col_cal"],
+            "3": ["lung_cyfra21_1", "lar_int_cea", "liver_ast", "liver_alp", "glucose", "lar_int_ca19"],
+            "4": ["lar_int_cea", "lar_int_ca19", "glucose", "tri_gly", "bmi", "r_gtp"],
+            "5": ["thy_ft4", "thy_tsh", "tri_gly", "bmi", "ldl_col_cal", "liver_alp"],
+            "6": ["breast_ca15_3", "ldl_col_cal", "total_col", "bmi", "hdl_col", "liver_alp"],
+            "7": ["blood_press_high", "blood_press_low", "ldl_col_cal", "total_col", "r_gtp", "tri_gly"],
+            "8": ["total_col", "ldl_col_cal", "bmi", "blood_press_high", "blood_press_low", "glucose"],
+            "9": ["glucose", "tri_gly", "r_gtp", "total_col", "ldl_col_cal", "liver_alt"],
+            "10": ["bmi", "total_col", "liver_albumin", "ldl_col_cal", "hdl_col", "tri_gly"],
+            "11": ["blood_press_low", "blood_press_high", "r_gtp", "bmi", "glucose", "tri_gly"],
+            "12": ["total_col", "tri_gly", "ldl_col_cal", "hdl_col", "r_gtp", "liver_alt"],
+            "13": ["liver_ast", "liver_alt", "r_gtp", "liver_alp", "tri_gly", "bmi"],
+            "14": ["urine_protein", "liver_albumin", "creatinine", "liver_protein", "tri_gly", "glucose"]
+        }
+    }
+}
