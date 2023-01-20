@@ -1,5 +1,84 @@
-User = {
-    "name": "홍길동",
-    "age": 22,
-    "gender": "남성"
+Data = {
+    "userInfo":{
+        "name": "홍길동",
+        "age": 22,
+        "gender": "남성", //혹은 주민번호 뒷자리의 첫번째
+        "inspcDate":"2023-02-25"
+    },
+    "diseases":{
+        "간암":{
+            "percent":0, 
+            "index1":{"name":"알카라인 포스타파제", "min":35, "max":130, "value":40},
+            "index2":{"name":"알라닌아미노전이효소", "min":4, "max":40, "value":30},
+            "index3":{"name":"아세테이트아미노전이효소", "min":4, "max":40, "value":20},
+            "index4":{"name":"감마글루타밀전이효소", "min":11, "max":63, "value":20},
+            "index5":{"name":"고밀도지단백콜레스테롤", "min":60, "max":999, "value":100},
+            "index6":{"name":"비만도", "min":18.5, "max":22.9, "value":20.3},
+            "habit":"-운동하기 - 음주삼가하기 이하 생략"
+        },
+        "위암":{
+            "percent":21.3, 
+            "index1":{"name":"종양표지자(CEA)", "min":0, "max":47, "value":40},
+            "index2":{"name":"종양표지자(CA19-9)", "min":0, "max":34, "value":30},
+            "index3":{"name":"고밀도지단백콜레스테롤", "min":60, "max":999, "value":100},
+            "index4":{"name":"중성지방", "min":0, "max":149, "value":180},
+            "index5":{"name":"공복혈당", "min":70, "max":99, "value":60},
+            "index6":{"name":"저밀도지단백콜레스테롤", "min":0, "max":129, "value":88},
+            "habit":"-운동하기 - 음주삼가하기 이하 생략"
+        },
+        "뇌졸중":{
+            "percent":41.2, 
+            "index1":{"name":"알카라인 포스타파제", "min":35, "max":130, "value":40},
+            "index2":{"name":"알라닌아미노전이효소", "min":4, "max":40, "value":30},
+            "index3":{"name":"아세테이트아미노전이효소", "min":4, "max":40, "value":20},
+            "index4":{"name":"감마글루타밀전이효소", "min":11, "max":63, "value":20},
+            "index5":{"name":"고밀도지단백콜레스테롤", "min":60, "max":999, "value":100},
+            "index6":{"name":"비만도", "min":18.5, "max":22.9, "value":20.3},
+            "habit":"-운동하기 - 음주삼가하기 이하 생략"
+        },
+        "심근경색":{
+            "percent":61.0, 
+            "index1":{"name":"종양표지자(CEA)", "min":0, "max":47, "value":40},
+            "index2":{"name":"종양표지자(CA19-9)", "min":0, "max":34, "value":30},
+            "index3":{"name":"고밀도지단백콜레스테롤", "min":60, "max":999, "value":100},
+            "index4":{"name":"중성지방", "min":0, "max":149, "value":180},
+            "index5":{"name":"공복혈당", "min":70, "max":99, "value":60},
+            "index6":{"name":"저밀도지단백콜레스테롤", "min":0, "max":129, "value":88},
+            "habit":"-운동하기 - 음주삼가하기 이하 생략"
+        }
+    }
 }
+
+
+// User = {
+//     "name": "홍길동",
+//     "age": 22,
+//     "gender": "남성"
+// }
+
+// data = {"userInfo":{
+//     "name": "홍길동",
+//     "age": 22,
+//     "gender": "남성", //혹은 주민번호 뒷자리의 첫번째
+//     "inspcDate":"2023-02-25"
+// },
+// "disease":{
+//     "간암":{"percent":22, 
+//             "index1":{"name":"알카라인 포스타파제", "min":35, "max":130, "value":40},
+//             "index2":{"name":"알라닌아미노전이효소", "min":4, "max":40, "value":30},
+//             "index3":{"name":"아세테이트아미노전이효소", "min":4, "max":40, "value":20},
+//             "index4":{"name":"감마글루타밀전이효소", "min":11, "max":63, "value":20},
+//             "index5":{"name":"고밀도지단백콜레스테롤", "min":60, "max":999, "value":100},
+//             "index6":{"name":"비만도", "min":18.5, "max":22.9, "value":20.3},
+//             "habit":"-운동하기 - 음주삼가하기 이하 생략"
+// },
+// "위암":{"percent":12, 
+//             "index1":{"name":"종양표지자(CEA)", "min":0, "max":47, "value":40},
+//             "index2":{"name":"종양표지자(CA19-9)", "min":0, "max":34, "value":30},
+//             "index3":{"name":"고밀도지단백콜레스테롤", "min":60, "max":999, "value":100},
+//             "index4":{"name":"중성지방", "min":0, "max":149, "value":180},
+//             "index5":{"name":"공복혈당", "min":70, "max":99, "value":60},
+//             "index6":{"name":"저밀도지단백콜레스테롤", "min":0, "max":129, "value":88},
+//             "habit":"-운동하기 - 음주삼가하기 이하 생략"
+// } ....이하생략
+// }

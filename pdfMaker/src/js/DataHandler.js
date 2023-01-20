@@ -1,39 +1,58 @@
-var userName = "None";
-var gender = "None";
-var age = "None";
-var examinationDate = "None";
+var userInfo;
+var cancers = {};
+var chronics = {};
 
+//여기서 데이터를 받아오면 됩니다.
 function setData() {
-    const data = JSON.parse(JSON.stringify(User));
+    const data = JSON.parse(JSON.stringify(Data));
     if (data == null) {
         console.error("No Data");
     }
-    userName = data["name"];
-    gender = data["gender"];
-    age = data["age"];
+
+    userInfo = data["userInfo"];
+    cancers, (chronics = getDiseases(data));
 }
 
 function getUserName() {
-    if (userName == "None") {
-        console.error("No userName Data");
-    }
-    return userName;
+    return userInfo["name"];
 }
 function getGender() {
-    if (gender == "None") {
-        console.error("No gender Data");
-    }
-    return gender;
+    return userInfo["gender"];
 }
 function getAge() {
-    if (age == "None") {
-        console.error("No age Data");
-    }
-    return age;
+    return userInfo["age"];
 }
-function getExaminationDate() {
-    if (examinationDate == "None") {
-        console.error("No examinationDate Data");
+function getInspcDate() {
+    return userInfo["inspcDate"];
+}
+
+function getDiseases(data) {
+    for (const key in data["diseases"]) {
+        if (key.endsWith("암")) {
+            cancers[key] = data["diseases"][key];
+            cancers[key]["dangerRange"] = setDangerRange(cancers[key]);
+        } else {
+            chronics[key] = data["diseases"][key];
+            chronics[key]["dangerRange"] = setDangerRange(chronics[key]);
+        }
     }
-    return examinationDate;
+
+    return cancers, chronics;
+}
+
+function setDangerRange(data) {
+    const percent = data["percent"];
+    if (percent >= 0 && percent <= 20) {
+        return "정상";
+    } else if (percent > 20 && percent <= 40) {
+        return "관심";
+    } else if (percent > 40 && percent <= 60) {
+        return "주의";
+    } else if (percent > 60 && percent <= 80) {
+        return "경계";
+    } else if (percent > 80 && percent <= 100) {
+        return "위험";
+    } else {
+        console.error("Invalid percent");
+    }
 }

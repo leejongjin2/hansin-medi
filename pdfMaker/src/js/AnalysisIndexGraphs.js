@@ -11,7 +11,7 @@ var GRAY_BAR_COLOR = "#c4c4c4";
 class MyGraph {
     chartData = [];
 
-    constructor(cancer) {
+    constructor(disease) {
         if (this.constructor == MyGraph) {
             throw new Error("Abstract classes can't be instantiated.");
         }
@@ -37,11 +37,11 @@ class MyGraph {
  * @extends {MyGraph}
  */
 class Basic2SectionGraph extends MyGraph {
-    cancer = "";
+    disease = "";
 
-    constructor(cancer) {
+    constructor(disease) {
         super();
-        this.cancer = cancer;
+        this.disease = disease;
     }
 
     adjustValue() {
@@ -81,7 +81,9 @@ class Basic2SectionGraph extends MyGraph {
                 },
             ],
         });
-        var chtID = document.getElementById(this.cancer + idx).getContext("2d");
+        var chtID = document
+            .getElementById(this.disease + idx)
+            .getContext("2d");
         return new Chart(chtID).Linear(this.chartData, this.getChartConfig());
     }
 
@@ -169,11 +171,11 @@ class Basic2SectionGraph extends MyGraph {
  * @extends {MyGraph}
  */
 class Basic3SectionGraph extends MyGraph {
-    cancer = "";
+    disease = "";
 
-    constructor(cancer) {
+    constructor(disease) {
         super();
-        this.cancer = cancer;
+        this.disease = disease;
     }
 
     adjustValue() {
@@ -222,7 +224,9 @@ class Basic3SectionGraph extends MyGraph {
                 },
             ],
         });
-        var chtID = document.getElementById(this.cancer + idx).getContext("2d");
+        var chtID = document
+            .getElementById(this.disease + idx)
+            .getContext("2d");
         return new Chart(chtID).Linear(this.chartData, this.getChartConfig());
     }
 
@@ -348,11 +352,11 @@ class Basic3SectionGraph extends MyGraph {
  * @extends {MyGraph}
  */
 class Longer3SectionGraph extends MyGraph {
-    cancer = "";
+    disease = "";
 
-    constructor(cancer) {
+    constructor(disease) {
         super();
-        this.cancer = cancer;
+        this.disease = disease;
     }
 
     adjustValue() {
@@ -401,7 +405,9 @@ class Longer3SectionGraph extends MyGraph {
                 },
             ],
         });
-        var chtID = document.getElementById(this.cancer + idx).getContext("2d");
+        var chtID = document
+            .getElementById(this.disease + idx)
+            .getContext("2d");
         return new Chart(chtID).Linear(this.chartData, this.getChartConfig());
     }
 
@@ -527,13 +533,13 @@ class Longer3SectionGraph extends MyGraph {
  * @extends {MyGraph}
  */
 class 요단백Graph extends MyGraph {
-    cancer = "";
+    disease = "";
     요단백min = 0;
     요단백max = 5;
 
-    constructor(cancer) {
+    constructor(disease) {
         super();
-        this.cancer = cancer;
+        this.disease = disease;
     }
 
     adjustValue() {
@@ -574,7 +580,9 @@ class 요단백Graph extends MyGraph {
                 },
             ],
         });
-        var chtID = document.getElementById(this.cancer + idx).getContext("2d");
+        var chtID = document
+            .getElementById(this.disease + idx)
+            .getContext("2d");
         return new Chart(chtID).Linear(this.chartData, this.getChartConfig());
     }
 
@@ -700,11 +708,11 @@ class 요단백Graph extends MyGraph {
  * @extends {MyGraph}
  */
 class 비만도Graph extends MyGraph {
-    cancer = "";
+    disease = "";
 
-    constructor(cancer) {
+    constructor(disease) {
         super();
-        this.cancer = cancer;
+        this.disease = disease;
     }
 
     adjustValue() {
@@ -747,7 +755,9 @@ class 비만도Graph extends MyGraph {
                 },
             ],
         });
-        var chtID = document.getElementById(this.cancer + idx).getContext("2d");
+        var chtID = document
+            .getElementById(this.disease + idx)
+            .getContext("2d");
         return new Chart(chtID).Linear(this.chartData, this.getChartConfig());
     }
 
@@ -867,42 +877,75 @@ class 비만도Graph extends MyGraph {
 }
 
 class GraphDrawer {
-    constructor(cancer, indexes) {
-        this.cancer = cancer;
+    constructor(disease, indexes) {
+        this.disease = disease;
         this.indexes = indexes;
-        this.twoSecGraph = new Basic2SectionGraph(cancer);
-        this.threeSecGraph = new Basic3SectionGraph(cancer);
+        this.twoSecGraph = new Basic2SectionGraph(disease);
+        this.threeSecGraph = new Basic3SectionGraph(disease);
     }
 
     drawGraphs() {
-        for (const [idx, key] of Object.keys(this.indexes).entries()) {
-            const min = this.indexes[key]["min"];
-            const max = this.indexes[key]["max"];
-            const value = this.indexes[key]["v"];
+        // for (const [idx, this.indexes["index" + i]['name']] of Object.keys(this.indexes).entries()) {
+        for (let i = 1; i < 7; i++) {
+            const min = this.indexes["index" + i]["min"];
+            const max = this.indexes["index" + i]["max"];
+            const value = this.indexes["index" + i]["value"];
 
-            if (key == "요단백") {
-                const 요단백 = new 요단백Graph(this.cancer);
-                요단백.drawGraph(idx, min, max, value);
-            } else if (key == "비만도") {
-                const 비만도 = new 비만도Graph(this.cancer);
-
-                비만도.drawGraph(idx, min, max, value);
-            } else if (key == "고밀도지단백콜레스테롤") {
-                this.twoSecGraph.drawGraph(idx, min, value);
+            if (this.indexes["index" + i]["name"] == "요단백") {
+                const 요단백 = new 요단백Graph(this.disease);
+                요단백.drawGraph(i, min, max, value);
+            } else if (this.indexes["index" + i]["name"] == "비만도") {
+                const 비만도 = new 비만도Graph(this.disease);
+                비만도.drawGraph(i, min, max, value);
+            } else if (
+                this.indexes["index" + i]["name"] == "고밀도지단백콜레스테롤"
+            ) {
+                this.twoSecGraph.drawGraph(i, min, value);
             } else {
                 if (min == 0) {
-                    this.twoSecGraph.drawGraph(idx, max, value);
+                    this.twoSecGraph.drawGraph(i, max, value);
                 } else {
                     if (min / (min + max) < 0.2) {
                         const longer3SectionGraph = new Longer3SectionGraph(
-                            this.cancer
+                            this.disease
                         );
-                        longer3SectionGraph.drawGraph(idx, min, max, value);
+                        longer3SectionGraph.drawGraph(i, min, max, value);
                     } else {
-                        this.threeSecGraph.drawGraph(idx, min, max, value);
+                        this.threeSecGraph.drawGraph(i, min, max, value);
                     }
                 }
             }
         }
     }
+
+    // drawGraphs() {
+    //     for (const [idx, this.indexes["index" + i]['name']] of Object.keys(this.indexes).entries()) {
+    //         const min = this.indexes[this.indexes["index" + i]['name']]["min"];
+    //         const max = this.indexes[this.indexes["index" + i]['name']]["max"];
+    //         const value = this.indexes[this.indexes["index" + i]['name']]["v"];
+
+    //         if (this.indexes["index" + i]['name'] == "요단백") {
+    //             const 요단백 = new 요단백Graph(this.disease);
+    //             요단백.drawGraph(idx, min, max, value);
+    //         } else if (this.indexes["index" + i]['name'] == "비만도") {
+    //             const 비만도 = new 비만도Graph(this.disease);
+    //             비만도.drawGraph(idx, min, max, value);
+    //         } else if (this.indexes["index" + i]['name'] == "고밀도지단백콜레스테롤") {
+    //             this.twoSecGraph.drawGraph(idx, min, value);
+    //         } else {
+    //             if (min == 0) {
+    //                 this.twoSecGraph.drawGraph(idx, max, value);
+    //             } else {
+    //                 if (min / (min + max) < 0.2) {
+    //                     const longer3SectionGraph = new Longer3SectionGraph(
+    //                         this.disease
+    //                     );
+    //                     longer3SectionGraph.drawGraph(idx, min, max, value);
+    //                 } else {
+    //                     this.threeSecGraph.drawGraph(idx, min, max, value);
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }

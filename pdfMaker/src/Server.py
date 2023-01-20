@@ -1,3 +1,4 @@
+import os
 import asyncio
 import websockets
 import webbrowser
@@ -8,6 +9,7 @@ class SingletonServer(object):
     def start_server(cls):
         url = "/home/hwi/github/hansin-medi/pdfMaker/src/result.html"
         webbrowser.open(url)
+        # os.system("google-chrome --headless --disalbe-gpu --print-to-pdf=server.pdf "+url)
         asyncio.get_event_loop().run_forever() 
     
     async def accept(websocket, path):

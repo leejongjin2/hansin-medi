@@ -3,39 +3,51 @@ function get_percent() {
     return percent;
 }
 
-function logo_info() {
-    if (percent >= 1 && percent <= 20) {
+function getDangerRangeImage(dangerRange) {
+    if (dangerRange == "정상") {
         return "img/정상.jpg";
-    } else if (percent > 20 && percent <= 40) {
+    } else if (dangerRange == "관심") {
         return "img/관심.jpg";
-    } else if (percent > 40 && percent <= 60) {
+    } else if (dangerRange == "주의") {
         return "img/주의.jpg";
-    } else if (percent > 60 && percent <= 80) {
+    } else if (dangerRange == "경계") {
         return "img/경계.jpg";
-    } else if (percent > 80 && percent <= 99) {
+    } else if (dangerRange == "위험") {
         return "img/위험.jpg";
     } else {
-        console.error("Invalid percent");
+        console.error("Invalid dangerRange");
     }
 }
 
 function writeHTMLs() {
-    //get cancerList
-    const allCancerIndexes = getIndexPerCancers();
-    for (const cancer of Object.keys(allCancerIndexes)) {
-        writeHtml(cancer, allCancerIndexes[cancer]);
+    for (const cancer in cancers) {
+        writeHtml(cancer, cancers[cancer], cancers[cancer]["habit"]);
+    }
+    for (const chronic in chronics) {
+        writeHtml(chronic, chronics[chronic], chronics[chronic]["habit"]);
     }
 }
 
-function getIndexPerCancers() {
-    const indexes = JSON.parse(JSON.stringify(AnalysisIndex));
-    if (indexes == null) {
-        console.error("No Index data");
-    }
-    return indexes;
-}
+/**
+ * AnalysisIndex = 모든 종류 그래프 형태 확인용
+ */
+// function writeHTMLs() {
+//     //get cancerList
+//     const allCancerIndexes = getIndexPerCancers();
+//     for (const cancer of Object.keys(allCancerIndexes)) {
+//         writeHtml(cancer, allCancerIndexes[cancer]);
+//     }
+// }
 
-function writeHtml(cancer, indexes) {
+// function getIndexPerCancers() {
+//     const indexes = JSON.parse(JSON.stringify(AnalysisIndex));
+//     if (indexes == null) {
+//         console.error("No Index data");
+//     }
+//     return indexes;
+// }
+
+function writeHtml(disease, indexes, habit) {
     document.write("<body>");
     document.write('<div class="page">');
     document.write("<header>");
@@ -48,21 +60,23 @@ function writeHtml(cancer, indexes) {
     document.write("<main>");
     document.write('<div class="inner">');
     document.write('<div id="title">');
-    document.write("<h1>" + cancer + " 위험도 분석</h1>");
+    document.write("<h1>" + disease + " 위험도 분석</h1>");
     document.write("</div>");
     document.write('<section class="indexBlock">');
     document.write('<div id="warning">');
     document.write('<div id="percent">');
     document.write('<p id="percentInfo">AI예측, 5년 내 발병 위험도</p>');
     document.write('<div id="percentValue">');
-    document.write(get_percent() + "%");
+    document.write(indexes["percent"] + "%");
     document.write("</div>");
     document.write("</div>");
     document.write('<a class="disableClick" href="src/">');
     document.write(
-        `<img class="warningImg" id="${cancer}warningImg" src="" />`
+        `<img class="warningImg" id="${disease}warningImg" src="" />`
     );
-    document.getElementById(cancer + "warningImg").src = logo_info();
+    document.getElementById(disease + "warningImg").src = getDangerRangeImage(
+        indexes["dangerRange"]
+    );
     document.write("</a>");
     document.write("</div>");
     document.write("<hr />");
@@ -77,24 +91,25 @@ function writeHtml(cancer, indexes) {
     document.write("<h2>분석 지표</h2>");
     document.write("        ");
     document.write('<div class="indexBlock">');
-    writeHTMLGraphs(cancer, indexes);
+    writeHTMLGraphs(disease, indexes);
     document.write("</div>");
-    const graphDrawer = new GraphDrawer(cancer, indexes);
+    const graphDrawer = new GraphDrawer(disease, indexes);
     graphDrawer.drawGraphs();
     document.write("        ");
     document.write("<h2>위험도를 낮추기 위한 생활습관 가이드</h2>");
     document.write('<div class="indexBlock">');
     document.write('<p id="habitGuidance">');
-    document.write("- 고른 식사와 규칙적 운동이 중요합니다.<br />");
-    document.write("- 지나친 음주는 삼가합니다.<br />");
-    document.write("- 흡연을 하지 않습니다.<br />");
-    document.write("- 정기적인 건강검진을 통해 간 기능을 체크합니다.<br />");
-    document.write("- B형간염 바이러스에 대한 항체가 없다면 B형간염 백신을");
-    document.write("맞습니다.<br />");
-    document.write("- 우상복부 통증, 체중감소, 피로감 등이 발견되면 의사와");
-    document.write("상의합니다.<br />");
-    document.write("- 만성 간질환의 경우 정기적인 초음파검사와 피검사를");
-    document.write("받습니다.<br />");
+    document.write(habit);
+    // document.write("- 고른 식사와 규칙적 운동이 중요합니다.<br />");
+    // document.write("- 지나친 음주는 삼가합니다.<br />");
+    // document.write("- 흡연을 하지 않습니다.<br />");
+    // document.write("- 정기적인 건강검진을 통해 간 기능을 체크합니다.<br />");
+    // document.write("- B형간염 바이러스에 대한 항체가 없다면 B형간염 백신을");
+    // document.write("맞습니다.<br />");
+    // document.write("- 우상복부 통증, 체중감소, 피로감 등이 발견되면 의사와");
+    // document.write("상의합니다.<br />");
+    // document.write("- 만성 간질환의 경우 정기적인 초음파검사와 피검사를");
+    // document.write("받습니다.<br />");
     document.write("</p>");
     document.write("    ");
     document.write("</div>");
@@ -105,7 +120,7 @@ function writeHtml(cancer, indexes) {
     document.write('<div class="inner">');
     document.write('<div id="footline">');
     document.write('<p class="desc">');
-    document.write("서울대 공식 자회사 SNUAiLab과 INFINITYCARE 공동");
+    document.write("서울대 공식 자회사 SNUAiLAB과 INFINITYCARE 공동");
     document.write("연구 개발&nbsp");
     document.write("</p>");
     document.write("    ");
@@ -126,18 +141,21 @@ function writeHtml(cancer, indexes) {
     document.write("</html>");
 }
 
-function writeHTMLGraphs(cancer, indexes) {
-    for (const [idx, key] of Object.keys(indexes).entries()) {
+function writeHTMLGraphs(disease, indexes) {
+    for (let i = 1; i < 7; i++) {
         document.write('<div class="graphWrapper">');
         document.write(
-            `<div class="indexName">- ${key.replace(/\s/g, "")}</div>`
-        );
+            `<div class="indexName">- ${indexes["index" + i]["name"].replace(
+                /\s/g,
+                ""
+            )}</div>`
+        ); //정규표현식 : 공백제거
         document.write('<div class="indexGraph">');
         document.write(
-            `<canvas id="${cancer}${idx}" style="width: 11cm; height:1.25cm;""></canvas>`
+            `<canvas id="${disease}${i}" style="width: 11cm; height:1.25cm;""></canvas>`
         );
         document.write("</div>");
-        document.write("<div>" + 55.0 + "</div>");
+        document.write("<div>" + indexes["index" + i]["value"] + "</div>");
         document.write("</div>");
     }
 }

@@ -1,3 +1,4 @@
+<!-- 커버페이지 HTML -->
 <!DOCTYPE html>
 <html lang="kr">
     <head>
@@ -64,7 +65,7 @@
                                 <div class="userIndex">측정일</div>
                                 <div class="userValue">
                                     <script>
-                                        document.write(getExaminationDate());
+                                        document.write(getInspcDate());
                                     </script>
                                 </div>
                             </div>
@@ -105,7 +106,7 @@
             <footer>
                 <div class="inner">
                     <section id="mainDesc">
-                        본 분석은 서울대학교 AI개발 공식 자회사인 SNUailab 과
+                        본 분석은 서울대학교 AI개발 공식 자회사인 SNUAiLAB 과
                         공동 연구 설계한 AI질병예측 프로그램입니다. 방대한
                         데이터를 학습한 인공지능이 고객님의 건강검진 결과를
                         기반으로 암질환과 만성질환에 대한 발병 위험도를 분석하여
@@ -124,6 +125,7 @@
     </body>
 </html>
 
+<!-- 분석내용종합 페이지 html -->
 <!DOCTYPE html>
 <html lang="kr">
     <head>
@@ -174,7 +176,7 @@
                     </section>
 
                     <script>
-                        drawCanvas();
+                        drawAllAnalysisGraphs();
                     </script>
                 </div>
             </main>
@@ -184,7 +186,7 @@
                     <div class="inner">
                         <div id="footline">
                             <p class="desc">
-                                서울대 공식 자회사 SNUAiLab과 INFINITYCARE 공동
+                                서울대 공식 자회사 SNUAiLAB과 INFINITYCARE 공동
                                 연구 개발&nbsp
                             </p>
 
@@ -203,6 +205,7 @@
     </body>
 </html>
 
+<!-- 질병별 분석지표 페이지 -->
 <!DOCTYPE html>
 <html lang="kr">
     <head>
@@ -217,15 +220,14 @@
         <script src="https://cdn.rawgit.com/chartjs/Chart.LinearGauge.js/master/Chart.LinearGauge.js"></script>
         <a class="disableClick" href="src/">
             <script src="js/AnalysisIndexGraphs.js"></script>
-            <script src="js/DataHandler.js"></script>
-            <script src="js/HTMLWriter.js"></script>
+            <script src="js/AnalysisIndexHTMLWriter.js"></script>
         </a>
     </head>
     <script src="json/AnalysisIndex.json" type="text/javascript"></script>
     <script>
         writeHTMLs();
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         // 웹 서버를 접속한다.
         var webSocket = new WebSocket("ws://localhost:8888");
         // 소켓 접속이 되면 호출되는 함수
@@ -235,30 +237,19 @@
         };
         // 소켓 접속이 끝나면 호출되는 함수
         webSocket.onclose = function (message) {
-            alert("Server disconnect...");
+            console.log("Server disconnect...");
         };
         // 소켓 통신 중에 에러가 발생되면 호출되는 함수
         webSocket.onerror = function (message) {
-            alert("Websocket error...\n");
+            console.log("Websocket error...\n");
         };
         // 소켓 서버로 부터 메시지가 오면 호출되는 함수.
         webSocket.onmessage = function (message) {
             console.log("Recieve From Server => " + message.data + "\n");
-            alert("Recieve From Server => " + message.data + "\n");
-
-            addEventListener("afterprint", (event) => {});
-            onafterprint = (event) => {};
-            window.onafterprint = (event) => {
-                console.log(event);
-                window.open("", "_self", ""); //window.browser가 자식 브라우저만 닫을 수있어서 편법으로 자기를 열고 자기를 닫도록함.
-                console.log("닫는다...");
-                webSocket.send("close");
-                webSocket.close();
-                console.log("닫았다...");
-                window.close();
-            };
-
-            window.print();
+            console.log("닫는다...");
+            webSocket.send("close");
+            webSocket.close();
+            console.log("닫았다...");
         };
-    </script>
+    </script> -->
 </html>
