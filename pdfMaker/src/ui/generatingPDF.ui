@@ -80,10 +80,10 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="line_chartNum"/>
+           <widget class="QLineEdit" name="line_chtNo"/>
           </item>
           <item row="0" column="3">
-           <widget class="QLineEdit" name="line_gumNum"/>
+           <widget class="QLineEdit" name="line_gumNo"/>
           </item>
           <item row="1" column="1">
            <widget class="QLineEdit" name="line_InspcDate"/>
