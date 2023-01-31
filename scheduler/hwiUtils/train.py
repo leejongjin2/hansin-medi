@@ -8,7 +8,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import f1_score, accuracy_score, precision_score, recall_score, confusion_matrix
 
-from hwiUtils.info import info_start, info_end
+from scheduler.hwiUtils.info import info_start, info_end
 from hwiUtils.preprocess import preprocess_data
 
 def train_HanshinModel():

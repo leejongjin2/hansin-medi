@@ -1,3 +1,4 @@
+import pymssql
 import numpy as np
 import pandas as pd
 import sys
@@ -9,9 +10,92 @@ import argparse
 import tqdm
 # import seaborn as sns
 
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+
+    """
+    SELECT 
+    (CASE
+        WHEN per1_age > 50
+        THEN '50' ELSE '50미만' END) AS TEST_GENDER
+ FROM (SELECT TOP (10) 
+      per1_name
+      ,per1_birth_date
+      ,per1_gender
+      ,(FLOOR(CAST(DATEDIFF(DAY, per1_birth_date, GETDATE()) AS INTEGER) / 365.2422)) AS per1_age
+  FROM ANAL_2022.dbo.HCB_Train_Data) A
+
+
+
+-- SELECT YEAR(GETDATE())  AS YEAR
+
+-- SELECT FLOOR(CAST(DATEDIFF(DAY, '1996-02-29','2023-03-01') AS INTEGER) / 365.2422)
+
+-- select
+
+-- sum(if(date_format(GETDATE(),'%Y')-substring(per1_birth_date,1,4) between 10 and 19 , 1, 0)) as age_10,
+
+-- sum(if(date_format(GETDATE(),'%Y')-substring(per1_birth_date,1,4) between 20 and 29 , 1, 0)) as age_20,
+
+-- sum(if(date_format(GETDATE(),'%Y')-substring(per1_birth_date,1,4) between 30 and 39 , 1, 0)) as age_30,
+
+-- sum(if(date_format(GETDATE(),'%Y')-substring(per1_birth_date,1,4) between 40 and 49 , 1, 0)) as age_40,
+
+-- sum(if(date_format(GETDATE(),'%Y')-substring(per1_birth_date,1,4) between 50 and 59 , 1, 0)) as age_50,
+
+-- sum(if(date_format(GETDATE(),'%Y')-substring(per1_birth_date,1,4) between 60 and 69 , 1, 0)) as age_60
+
+-- from HCB_Train_Data
+
+-- confirm
+
+-- select substring(per1_birth_date, 1, 4) from HCB_Train_Data
+
+-- SELECT TOP (10) per1_chat_no
+--       ,per1_name
+--       ,per1_birth_date
+--       ,per1_gender
+--       ,per1_spc_year
+--       ,(FLOOR(CAST(DATEDIFF(DAY, per1_birth_date, GETDATE()) AS INTEGER) / 365.2422)) AS per1_age
+--   FROM ANAL_2022.dbo.HCB_Train_Data
+
+-- SELECT TOP (10) per1_gender
+--       ,per1_birth_date
+--       , (CASE
+--         WHEN per1_gender = 1
+--         THEN '남' ELSE '여' END) AS TEST_GENDER
+--   FROM ANAL_2022.dbo.HCB_Train_Data
+    """
+##############################################################################
+columns = ['per1_date', 'per1_chat_no', 'per1_bun_no', 'per1_name', 'per1_birth_date',\
+       'per1_gender', 'per1_life_code1', 'per1_life_code2', 'per1_life_code3',\
+       'per1_life_code4', 'per1_life_code5', 'per1_ilban', 'per1_kwa1',\
+       'per1_kwa2', 'per1_kwa3', 'per1_kwa4', 'per1_ggkwa5', 'per1_kwa6',\
+       'per1_spc_year', 'mj1_1_1', 'mj1_1_2', 'mj1_2_1', 'mj1_2_2', 'mj1_3_1',\
+       'mj1_3_2', 'mj1_4_1', 'mj1_4_2', 'mj1_5_1', 'mj1_5_2', 'mj1_6_1',\
+       'mj1_6_2', 'mj1_7_1', 'mj1_7_2', 'mj2_1', 'mj2_2', 'mj2_3', 'mj2_4',\
+       'mj2_5', 'mj3', 'mj4', 'mj5', 'mj6', 'mj71', 'mj72', 'mj73', 'mj74',\
+       'mj8_1', 'mj8_2_1', 'mj8_2_2', 'mj9_1', 'mj9_2_1', 'mj9_2_2', 'mj10',\
+       'height', 'weight', 'wai_cir', 'bmi', 'obesity', 'blood_press_high',\
+       'blood_press_low', 'total_col', 'hdl_col', 'ldl_col_cal', 'tri_gly',\
+       'r_gtp', 'liver_bilirubin', 'liver_protein', 'liver_albumin',\
+       'liver_globulin', 'liver_ast', 'liver_alt', 'liver_alp', 'glucose',\
+       'urine_protein', 'creatinine', 'liver_b_antigen',\
+       'stomach_helico_bacter', 'lung_cyfra21_1', 'lar_int_cea',\
+       'lar_int_ca19', 'thy_tsh', 'thy_ft4', 'breast_ca15_3']
+
+conn = pymssql.connect(server='192.168.0.25', user='sa', password='!command', database='ANAL_2022')
+cursor = conn.cursor()
+sql = 'select * from HCB_Train_Data'
+cursor.execute(sql)
+rows = cursor.fetchall()
+##############################################################################
+
+data = pd.DataFrame(rows, columns = columns)
+
 ## 데이터 불러오기
-data = pd.read_excel('data/new_train_dataset.xlsx')
-data.info()
+# data = pd.read_excel('/home/autocare/바탕화면/new_train_percent_hanshin/data/new_train_dataset.xlsx')
+# data.info()
 
 ## 만 나이 계산 
 print("만 나이 컬럼 데이터 추가")
@@ -62,6 +146,11 @@ for i in tqdm.tqdm(range(0,len(data))):
         data['age_group'].iloc[i]=14        
 print(data['age_group'].value_counts()) # 연령대별 검진자 수 조회
 print(data. columns)
+
+# 01.31 DB 데이터 혈액검사 결측치 형태 조회
+
+
+
 
 ## 성별 전처리 (1명 0 -> 2 전환, 남성 :1/3/5 -> 1, 여성:2/4/6 ->2)
 print('성별 전처리 :1) 1명 0 -> 2 전환, 2) 남성 :1/3/5 -> 1, 여성:2/4/6 ->2 변환')
@@ -395,3 +484,5 @@ print(pt_ca15_3_30)
 
 print(pt_cyfra21_1_25.info())
 print(pt_cyfra21_1_25.columns)
+
+print()
